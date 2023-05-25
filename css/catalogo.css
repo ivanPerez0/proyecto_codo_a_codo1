@@ -1,0 +1,234 @@
+.container-catalogo{
+    display: grid;
+    grid-template-columns: 100%
+}
+
+.filtros{
+    display: flex;
+    order: 2;
+}
+
+.categories{
+    margin-top: 10px;
+}
+
+.filtros form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+}
+
+form label{
+    margin: 3px;
+}
+
+form button{
+    margin-top: 5px;
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+
+form button:hover{
+    background-color: rgb(1, 33, 122);
+}
+
+
+/*MEDIA QUERIES PARA LA SECCION FILTROS*/
+/*PRIMER PUNTO DE CORTE ==> COMPUTADORAS*/
+@media screen and (min-width:992px){
+    .container-catalogo{
+        grid-template-columns: 20% auto;
+        grid-template-rows: 100% 100%;
+    }
+
+    .filtros{
+        order: 1;
+        margin-top: 50%;
+    }
+
+
+    .categories{
+        margin-top: 20%;
+    }
+
+    .categories input{
+        margin-top :10px;
+    }
+
+}
+
+
+/*----------------------------------------------------------------------------*/
+
+/*COMENZANDO ESTILOS PARA lA SECCION DE CLASE PRODUCTOS*/
+
+h3{
+    text-align: center;
+    font-size: 2em;
+}
+
+.productos{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    order: 1;
+
+}
+
+.card{
+    display: flex;
+    flex-direction:column;
+    margin-bottom: 10px;
+    width: 18rem;
+}
+
+.product_img{
+    width: 100%;
+    object-fit: cover;
+}
+
+.title-text {
+    font-size: 1.2em;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.card-body {
+    margin: 10px;
+    text-align: center;
+}
+
+.btn {
+    color: white;
+    text-decoration: none;
+    background-color: rgb(7, 94, 14);
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+}
+
+.btn:hover {
+    background-color: rgb(10, 177, 24);
+}
+
+
+
+/*MEDIA QUERIES DE LA SECCION PRODUCTOS*/
+/*1ER PUNTO DE CORTE ==> COMPUTADORAS*/
+@media screen and (min-width:992px){
+    .productos{
+        display:flex;
+        flex-wrap: wrap;
+        justify-content:flex-start ;
+    }
+
+    .card{
+        width: 14em;
+        margin: 10px;
+    }
+}
+
+
+/*SEGUNDO PUNTO DE CORTE ==> TABLETS*/
+@media only screen and (min-width:768px) and (max-width:991px){
+
+    .productos{
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+
+    .card{
+        width: 14em;
+    }  
+
+}
+
+
+
+
+/*------------------------------------------------------------------------*/
+.custom-select select{
+    width: 100%;
+    border-left: 6px solid rgb(10, 76, 199);
+    margin-bottom: 20px;
+    background-color: white;
+}
+
+/*--------------------------------------------------------------------------------*/
+
+
+
+.card.agregado {
+    position: relative;
+  }
+  
+  .card.agregado::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+  
+  .card.agregado .agregado-texto {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.459);
+    color: white;
+    font-size: 1.5em;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 2;
+  }
+  
+  .card::before,
+  .card .agregado-texto {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .card.agregado::before,
+  .card.agregado .agregado-texto {
+    opacity: 1;
+  }
+
+  /*-------------------------------------------------------------------------------------------------------------------------------*/
+
+  .scroll-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    border: none;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    cursor: pointer;
+   
+    transition: opacity 0.3s ease-in-out;
+}
+
+.scroll-top.show {
+    opacity: 1;
+}
+
+.scroll-top i {
+    transform: rotate(-90deg);
+}

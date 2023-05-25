@@ -1,0 +1,114 @@
+/*contactos stilos agregados x  jairys Moreno*/
+.caja2 {
+    background: #cccccc46;
+    width: auto;
+    text-align: justify;
+    box-sizing: border-box;
+    padding: 20px;
+    margin: 4px 0;
+    font-size: 20px;
+}
+
+.caja2 div {
+    text-align: center;
+    padding: 10 0px;
+
+}
+
+.lista li {
+    list-style-type: none;
+    padding: 10px;
+    font-size: large;
+    text-align: justify;
+}
+
+.btnf {
+    color: white;
+    text-decoration: none;
+    background-color: rgb(7, 94, 14);
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    width: 50%;
+    align-items: center;
+}
+
+.formCaja {
+    /* position: relative; */
+
+    width: 90%;
+}
+
+/* Estilo de los input , textarea, select { */
+
+.inputform {  
+    width: 100%;
+    height: 100%;
+    /* padding: 0.5em 0,1em; */
+    padding: 10px;
+    border: 3px solid #ccccccab;
+    font-size: medium;
+}
+
+/* Estilo de los labels del form*/
+.labelform {
+    display: flex;
+    align-items: flex-start;
+    color: black;
+    font-size: large;
+}
+
+.form-control input:focus {
+    outline: #945309;
+}
+
+
+.form-control.ok input {
+    border: 0.1px solid;
+    border-color: #08ffc8;
+}
+
+.form-control.falla input {
+    border: 0.1px solid;
+    border-color: #971309;
+}
+
+.form-control.falla span {
+    color: rgb(236, 17, 17);
+    font-size: large;
+    /* display: none; */
+    visibility: visible;
+}
+
+.form-control span, .form-control.ok span {
+    visibility: hidden;
+    
+}
+.formulario-exito {
+	font-size: large;
+	color: #119200;
+	display: none;
+}
+
+.formulario-exito-activo {
+	display: block;
+}
+
+/*MEDIA QUERIES DE CONTENIDO PRINCIPAL => 1ERA SECCION*/
+
+@media only screen and (min-width:992px) {
+
+    .caja2 {
+        width: 50%;
+        margin: 5px 10px;
+
+    }
+}
+
+@media only screen and (min-width:768px) and (max-width:991px) {
+
+    .caja2 {
+        width: 50%;
+        margin: 5px 10px;
+    }
+}

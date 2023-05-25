@@ -1,0 +1,206 @@
+main {
+    display: grid;
+    padding: 0;
+}
+
+
+/*1ERA SECCION*/
+
+.caja {
+    background: #cccccc46;
+    width: auto;
+    text-align: center;
+
+}
+
+.caja p {
+    text-align: left;
+    font-weight: 400;
+    padding: 0 15px;
+    font-size: 30px;
+
+}
+
+.caja img {
+    transition: 0.5s;
+}
+
+.caja img:hover {
+    padding-left: 60px;
+}
+
+/*MEDIA QUERIES DE CONTENIDO PRINCIPAL => 1ERA SECCION*/
+
+/*1ER PUNTO DE CORTE COMPUTADORAS*/
+@media only screen and (min-width:992px) {
+    .first_section {
+        display: flex;
+        justify-content: center;
+    }
+
+    .caja {
+        width: 25%;
+        margin: 5px 10px;
+        /*MARGIN DE 5 ARIBA Y ABAJO, MARGIN DE 10 IZQUIERA Y DERECHA*/
+    }
+
+}
+
+/*2DO PUNTO DE CORTE TABLETS*/
+
+@media only screen and (min-width:768px) and (max-width:991px) {
+    .first_section {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .caja {
+        width: 49%;
+        margin-top: 10px;
+    }
+
+}
+
+/*---------------------------------------------------------------------------*/
+
+/*SEGUNDA SECCION*/
+
+.frase {
+    font-size: 1.5em;
+    text-align: center;
+    font-style: oblique
+}
+
+/*MEDIA QUERIES DE CONTENIDO PRINCIPAL => 2DA SECCION*/
+
+/*1ER PUNTO DE CORTE COMPUTADORAS*/
+@media only screen and (min-width:992px) {
+    .frase {
+        font-size: 2em;
+    }
+}
+
+
+/*-----------------------------------------------------------------------------*/
+
+.linea {
+    color: rgba(119, 113, 113, 0.473);
+}
+
+.title-products {
+    text-align: center;
+}
+
+/*TERCERA SECCION*/
+
+.third_section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.product_img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.card-title {
+    font-size: 1.2em;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.card-body {
+    margin: 10px;
+    text-align: center;
+}
+
+.btn {
+    color: white;
+    text-decoration: none;
+    background-color: rgb(7, 94, 14);
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+}
+
+.btn:hover {
+    background-color: rgb(10, 177, 24);
+}
+
+@media screen and (min-width:992px) {
+    .third_section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    .card {
+        width: 18em;
+    }
+}
+
+@media only screen and (min-width:768px) and (max-width:991px) {
+
+    .third_section {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .card {
+        width: 16em;
+    }
+}
+
+/*-----------------------------------------------------------------------------*/
+
+/*CUARTA SECCION*/
+
+.fourth_section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.fourth_section {
+    font-size: 1.2em;
+}
+
+
+.fourth_section .fa {
+    margin-top: 20px;
+    font-size: 2em;
+    padding: 20px;
+}
+
+.more a {
+    text-decoration: underline;
+    color: black
+}
+
+
+/*/*MEDIA QUERIES DE CONTENIDO PRINCIPAL => 4TA SECCION*/
+/*1ER PUNTO DE CORTE COMPUTADORAS*/
+@media screen and (min-width:992px) {
+    .fourth_section {
+        flex-direction: row;
+    }
+}
+
+@media only screen and (min-width:768px) and (max-width:991px) {
+    .fourth_section {
+        flex-direction: row;
+    }
+
+}
