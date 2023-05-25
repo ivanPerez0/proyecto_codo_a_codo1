@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" href="./imagenes/icono.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/inicio.css">
+    <link rel="stylesheet" href="/css/carrito_style.css">
+    <link rel="stylesheet" href="./css/contacto.css">
+    <title>Proyecto Shop</title>
+</head>
+
+<body>
+
+    <div id="app" class="container">
+        <header-component></header-component>
+        <nav-component></nav-component>
+
+        <main>
+            <section class="first_section">
+                <div class="caja2">
+
+                    <h2>¿Necesitas asitencia con alguno de nuestros productos?</h2>
+                    <h3>Nuestras oficinas:</h3>
+                    <ul class="lista">
+                        <li><strong>Congreso 5420</strong>
+                            <br>Villa Urquiza
+                            <br>Ciudad Autonoma de Buenos Aires
+                        </li>
+                        <li><strong>Telefono:</strong>
+                            <br>11 5545 6698
+                        </li>
+                        <li><strong> Correo Electronico:</strong>
+                            <br>Atencion al cliente: projectshop@gmail.com
+                        </li>
+                    </ul>
+                    <div>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!4v1681666832288!6m8!1m7!1s1v-UJ-HYv8MW05bzz62LJw!2m2!1d-34.57169088502904!2d-58.49390014950654!3f132.28780966251594!4f11.926205453977389!5f0.7820865974627469"
+                            align="center" width="auto" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <br>
+                </div>
+                <div class="caja2">
+                    <h2>Formulario de Contacto</h2>
+
+                    <div class="formCaja">
+                        <form id="formulario">
+                            <div class="form-control">
+                                <label for="nombre" class="labelform ">Nombre y Apellido*<span class="alertaNombre">----Dato
+                                        Invalido----</span></label><br>
+                                <input type="text" name="nombre" id="nombre" size="50" class="inputform"><br><br>
+                            </div>
+                            <div class="form-control">
+                                <label for="mail" class="labelform">Correo Electronico* <span class="alertaMail">----Dato
+                                        Invalido----</span></label><br>
+                                <input type="email" name="mail" id="mail" size="50" class="inputform"><br><br>
+                            </div>
+                            <div class="form-control">
+                                <label for="telefono" class="labelform">Telefono <span class="alertaTelefono">----Dato
+                                        Invalido----</span></label><br>
+                                <input type="tel" name="telefono" id="telefono" size="50" class="inputform"
+                                    placeholder="+54 911 12345678"><br><br>
+                            </div>
+                            <div class="form-control">
+                                <label for="asunto" class="labelform">Asunto* <span class="alertaAsunto">----Dato
+                                        Invalido----</span></label><br>
+                                <input type="text" name="asunto" id="asunto" size="50" class="inputform"><br><br>
+                            </div>
+                            <label for="descripcion" class="labelform">Descripcion</label><br>
+                            <textarea name="descripcion" id="descripcion" cols="50" rows="5" class="inputform"></textarea><br><br>
+                            <label for="metodo" class="labelform">Metodo de contacto de preferencia</label>
+                            <select id="metodo" name="metodo" class="inputform">
+                                <option value="1">Email</option>
+                                <option value="2">Telefono</option>
+                            </select>
+                            <br><br>
+            
+                            <button type="submit" class="btnf">Enviar consulta</button>
+                            <p class="formulario-exito" id="formulario-exito">Formulario enviado exitosamente!</p>
+            
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer-component></footer-component>
+
+    </div>
+
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="./javascript/components/header-nav-footer.js"></script>
+
+    <script>
+
+        const app = Vue.createApp({
+   
+        })
+
+        app.component('header-component', HeaderComponent)
+        app.component('nav-component', NavComponent)
+        app.component('footer-component', FooterComponent)
+
+        const mountedApp = app.mount('#app')
+
+    </script>
+    
+    <script src="./javascript/validar-datos.js"></script>
+    <script src="./javascript/index.js"></script>    
+</body>
+
+</html>

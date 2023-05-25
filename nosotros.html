@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="shortcut icon" href="./imagenes/icono.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/nosotros.css">
+    <link rel="stylesheet" href="/css/carrito_style.css">
+    <title>Sobre Nosotros</title>
+</head>
+<body>
+    
+
+    <div id="app" class="container" >
+        <header-component></header-component>
+        <nav-component></nav-component>
+
+        <main>
+
+                <contacto-info></contacto-info>
+
+        </main>
+
+        <footer-component></footer-component>
+
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="./javascript/components/header-nav-footer.js"></script>
+    <script src="./javascript/components/nosotros-component.js"></script>
+
+
+    <script>
+
+        const app = Vue.createApp({
+
+        })
+
+        app.component('header-component', HeaderComponent)
+        app.component('nav-component',NavComponent)
+        app.component('footer-component',FooterComponent)
+        app.component('contacto-info',nosotrosComponent)
+
+        const mountedApp = app.mount('#app')
+
+    </script>
+
+
+    <!--ARCHIVO JAVASCRIPT PARA EL CONTROL DEL MENU LATERAL RESPONSIVO-->
+    <script src="./javascript/index.js"></script>
+
+</body>
+</html>

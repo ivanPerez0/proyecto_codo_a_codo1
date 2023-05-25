@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="shortcut icon" href="./imagenes/icono.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/catalogo.css">
+    <link rel="stylesheet" href="/css/carrito_style.css">
+    <title>Catalogo</title>
+</head>
+
+<body>
+
+    <div id="app" class="container">
+
+        <!--  :VARIABLE_EN_COMPONENTE_HIJO = "VARIABLE_EN_COMPONENTE_PADRE"-->
+        <header-component :items="lista_carrito"></header-component>
+        <nav-component></nav-component>
+        <h3>PRODUCTOS</h3>
+        <main class="container-catalogo">
+
+
+            <section class="filtros">
+                <form onsubmit="return false">
+
+
+                    <div class="custom-select" style="width:100%">
+                        <label for="orden-select">Ordenar Por:</label>
+
+                        <select name="orden-select" id="orden-select" v-model="sortOption">
+                            <option selected="selected">Por Defecto</option>
+                            <option value="MayorPrecio">Menor Precio</option>
+                            <option value="MenorPrecio">Mayor Precio</option>
+                        </select>
+                    </div>
+
+
+                    <label for="desde">Desde</label> <input type="number" name="desde" id="desde" min="1000"
+                        v-model="minPrice">
+                    <label for="hasta">Hasta</label> <input type="number" name="hasta" id="hasta" max="100000"
+                        v-model="maxPrice">
+
+                    <div class="categories">
+
+
+                        <input type="radio" id="todos" name="categorias" value="Todos" checked
+                            v-model="selectedCategory">
+                        <label for="todos">Todos</label><br>
+
+                        <input type="radio" id="camisa" name="categorias" value="Camisa" v-model="selectedCategory">
+                        <label for="camisa">Camisa</label><br>
+
+
+                        <input type="radio" id="remera" name="categorias" value="Remera" v-model="selectedCategory">
+                        <label for="remera">Remera</label><br>
+
+                        <input type="radio" id="pantalon" name="categorias" value="Pantalon" v-model="selectedCategory">
+                        <label for="pantalon">Pantalon</label><br>
+
+                        <input type="radio" name="categorias" id="zapatillas" value="Zapatillas"
+                            v-model="selectedCategory">
+                        <label for="zapatillas">Zapatillas</label><br>
+
+
+                    </div>
+
+
+
+
+                </form>
+            </section>
+
+            <section class="productos">
+
+                <div class="card" v-bind:class="{ agregado: prod.agregado }" v-if="filteredProducts.length"
+                    v-for="prod in filteredProducts">
+                    <img class="product_img" :src=prod.img :alt=prod.name>
+                    <div class="card-body" v-show="prod.img">
+                        <h2 class="title-text">{{ prod.name }}</h2>
+                        <p class="card-price"> {{ prod.price }}$ </p>
+                        <button class="btn btn-primary btn-agregar " @click="AñadirProducto(prod)">Añadir al
+                            Carrito</button>
+                        <div class="agregado-texto" v-show="prod.agregado">Añadido</div>
+                    </div>
+                </div>
+
+
+                <div v-else>
+                    <p>No se encontraron productos.</p>
+                </div>
+
+            </section>
+
+            <button class="scroll-top" @click="scrollToTop" v-show="showScrollTop">
+                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </button>
+
+        </main>
+
+
+        <footer-component></footer-component>
+
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="./javascript/components/header-nav-footer.js"></script>
+
+    <script>
+
+        const app = Vue.createApp({
+
+
+            data() {
+                return {
+                    productos:
+                        [
+                            {
+                                "genre": "Hombre",
+                                "name": "Camisa Rayada",
+                                "type": "Camisa",
+                                "img": "imagenes/camisa%20rayada.png",
+                                "price": 2000
+                            },
+                            {
+                                "genre": "Hombre",
+                                "name": "Camisa Marron",
+                                "type": "Camisa",
+                                "img": "imagenes/CamisaMarronHombre.png",
+                                "price": 1800
+                            },
+                            {
+                                "genre": "Mujer",
+                                "name": "Camisa Floreada",
+                                "img": "imagenes/camisa_hawaiana.webp",
+                                "type": "Camisa",
+                                "price": 5000
+                            },
+                            {
+                                "genre": "Hombre",
+                                "name": "Camisa Negra",
+                                "img": "imagenes/camisa_de_color_negra_de_mujer-.jpg",
+                                "price": 4500,
+                                "type": "Camisa"
+                            },
+                            {
+                                "genre": "Mujer",
+                                "name": "Camisa Marron",
+                                "img": "imagenes/camisaMarronMujer.png",
+                                "price": 6500,
+                                "type": "Camisa"
+                            },
+                            {
+                                "genre": "Mujer",
+                                "name": "Remera Negra Mujer",
+                                "img": "imagenes/black_t_shirt_for_woman.jpg",
+                                "type": "Camisa",
+                                "price": 3400
+                            },
+                            {
+                                "genre": "Hombre",
+                                "name": "Remera Blanca",
+                                "img": "imagenes/remera_blanca.webp",
+                                "type": "Remera",
+                                "price": 4700
+                            },
+                            {
+                                "genre": "Hombre",
+                                "name": "Remera Marron",
+                                "img": "imagenes/remera_marron_hombre.jpg",
+                                "type": "Remera",
+                                "price": 6700
+                            },
+                            {
+                                "genre": "Hombre",
+                                "name": "Remera Negra",
+                                "img": "imagenes/remera_negra_hombre.webp",
+                                "type": "Remera",
+                                "price": 6500
+                            },
+                            {
+                                "genre": "Mujer",
+                                "name": "Remera Rosa",
+                                "img": "imagenes/remera_rosa.webp",
+                                "type": "Remera",
+                                "price": 5500
+                            },
+                            {
+                                "genre": "Mujer",
+                                "name": "Remera Marron Mujer",
+                                "img": "imagenes/remera_marron_mujer.webp",
+                                "type": "Remera",
+                                "price": 8690
+                            },
+                            {
+                                "genre": "Mujer",
+                                "name": "Remera Verde",
+                                "img": "imagenes/remera_verde_mujer.webp",
+                                "type": "Remera",
+                                "price": 7800
+                            },
+                            {
+                                "genre": "Hombre",
+                                "name": "Pantalon Verde",
+                                "img": "imagenes/pantalon_verde_mujer.png",
+                                "type": "Pantalon",
+                                "price": 8600
+                            },
+                            {
+                                "genre": "Hombre",
+                                "name": "Pantalon Negro",
+                                "img": "imagenes/jean_negro_hombre.webp",
+                                "type": "Pantalon",
+                                "price": 9000
+                            },
+                            {
+                                "genre": "Hombre",
+                                "name": "Pantalon Azul",
+                                "img": "imagenes/pantalon_azul.webp",
+                                "type": "Pantalon",
+                                "price": 7600
+
+                            },
+                            {
+                                "genre": "Mujer",
+                                "name": "Pantalon  Marron",
+                                "img": "imagenes/pantalon_marron_mujer.webp",
+                                "type": "Pantalon",
+                                "price": 8700
+                            },
+                            {
+                                "genre": "Mujer",
+                                "name": "Pantalon Jooging Negro",
+                                "img": "imagenes/pantalon_jooging_negro_mujer.webp",
+                                "type": "Pantalon",
+                                "price": 9700
+
+                            },
+                            {
+                                "genre": "Mujer",
+                                "name": "Pantalon a Rayas",
+                                "img": "imagenes/pantalon_a_rayas_mujer.webp",
+                                "type": "Pantalon",
+                                "price": 12000
+                            },
+                            {
+                                "genre": "Hombre",
+                                "name": "Zapatilla Negra",
+                                "img": "imagenes/zapatilla_negra_hombre.webp",
+                                "type": "Zapatillas",
+                                "price": 13200
+                            },
+                            {
+                                "genre": "Hombre",
+                                "name": "Zapatilla blanco y negro",
+                                "img": "imagenes/zapatillla_blanco_y_negro.webp",
+                                "type": "Zapatillas",
+                                "price": 3450
+                            },
+
+                            {
+                                "genre": "Hombre",
+                                "name": "Zapatilla Deportiva 1",
+                                "img": "imagenes/zapatilla_deportiva_1.webp",
+                                "type": "Zapatillas",
+                                "price": 7650
+                            },
+                            {
+                                "genre": "Hombre",
+                                "name": "Zapatilla Deportiva 2",
+                                "img": "imagenes/zapatilla_deportiva_2.webp",
+                                "type": "Zapatillas",
+                                "price": 8900
+                            },
+                            {
+                                "genre": "Mujer",
+                                "name": "Zapato Marron",
+                                "img": "imagenes/zapato_marron.webp",
+                                "price": 4560,
+                                "type": "Zapatillas"
+                            },
+                            {
+                                "genre": "Mujer",
+                                "name": "Borcego Negro",
+                                "img": "imagenes/borcego_negro.webp",
+                                "price": 9900,
+                                "type": "Zapatillas"
+                            },
+                            {
+                                "genre": "Mujer",
+                                "name": "Zapato Negro",
+                                "img": "imagenes/zapato_negro.webp",
+                                "price": 12500,
+                                "type": "Zapatillas"
+                            },
+                            {
+                                "genre": "Mujer",
+                                "name": "Bota Marron",
+                                "img": "imagenes/bota_marron.webp",
+                                "type": "Zapatillas",
+                                "price": 15000
+                            }
+                        ],
+                    lista_carrito: [],
+                    selectedCategory: "Todos", // CATEGORIA POR DEFECTO
+                    minPrice: 1000,
+                    maxPrice: 100000,
+                    sortOption: "Por Defecto",
+                    showScrollTop: false
+                }
+            },
+
+            computed: {
+                filteredProducts() {
+                    let filtered = this.productos;
+                    if (this.selectedCategory !== "Todos") {
+                        filtered = filtered.filter(
+                            (product) => product.type === this.selectedCategory
+                        );
+                    }
+                    if (this.minPrice !== null) {
+                        filtered = filtered.filter(
+                            (product) => product.price >= parseFloat(this.minPrice)
+                        );
+                    }
+                    if (this.maxPrice !== null) {
+                        filtered = filtered.filter(
+                            (product) => product.price <= parseFloat(this.maxPrice)
+                        );
+                    }
+
+
+                    if (this.sortOption) {
+                        if (this.sortOption === "MayorPrecio") {
+                            filtered.sort((a, b) => a.price - b.price);
+                        } else if (this.sortOption === "MenorPrecio") {
+                            filtered.sort((a, b) => b.price - a.price);
+                        }
+                    }
+
+                    return filtered;
+                },
+            },
+
+            methods: {
+                AñadirProducto(prod) {
+
+                    if ((!this.lista_carrito.some(item => prod.name === item.name))) {
+                        this.lista_carrito.push({ name: prod.name, price: prod.price })
+
+                        /*------------------------------*/
+                        prod.agregado = true;
+                        setTimeout(() => {
+                            prod.agregado = false;
+                        }, 1000);
+
+                        /*----------------------*/
+                    } else {
+                        alert("PRODUCTO YA AÑADIDO")
+                    }
+
+
+                },
+                handleScroll() {
+                    this.showScrollTop = window.pageYOffset > window.innerHeight / 2;
+                },
+                scrollToTop() {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            },
+            mounted() {
+                window.addEventListener('scroll', this.handleScroll);
+            },
+            beforeUnmount() {
+                window.removeEventListener('scroll', this.handleScroll);
+            }
+
+
+
+        })
+
+
+        app.component('header-component', HeaderComponent)
+        app.component('nav-component', NavComponent)
+        app.component('footer-component', FooterComponent)
+        const mountedApp = app.mount('#app')
+    </script>
+
+    <script src="./javascript/index.js"></script>
+
+
+
+</body>
+
+</html>

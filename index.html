@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="shortcut icon" href="./imagenes/icono.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/inicio.css">
+    <link rel="stylesheet" href="/css/carrito_style.css">
+    <title>Proyecto Shop</title>
+</head>
+
+<body>
+
+
+
+
+    <div id="app" class="container">
+        <header-component></header-component>
+        <nav-component></nav-component>
+
+        <main>
+            <!--COMIENZO PRIMERA SECCION-->
+            <section class="first_section">
+                <div class="caja">
+                    <p>Mochilas</p>
+                    <img src="./imagenes/mochila.png" alt="mochila negra" style="width:140px">
+                </div>
+
+                <div class="caja">
+                    <p>Mujeres</p>
+                    <img src="https://static.vecteezy.com/system/resources/previews/008/847/321/original/isolated-black-t-shirt-for-women-free-png.png"
+                        alt="" style="width:200px">
+                </div>
+
+                <div class="caja">
+                    <p>Jeans</p>
+                    <img src="https://media.vogue.mx/photos/614b31a8531716c27a01d960/master/w_1920,h_1280,c_limit/Eckhaus%20Latta.png"
+                        alt="" style="width:200px">
+                </div>
+
+                <div class="caja">
+                    <p>Zapatillas</p>
+                    <img src="https://www.pngmart.com/files/7/Tap-Shoes-PNG-File.png" alt="" style="width:140px"
+                        style="margin-bottom: 0px;">
+                </div>
+            </section>
+
+            <!--COMIENZO SEGUNDA SECCION-->
+            <section class="segunda_section">
+                <div>
+                    <p class="frase">LIFE IS NOT PERFECT, BUT YOU OUTFIT CAN BE</p>
+                </div>
+                <!--FIN SEGUNDA SECCION-->
+            </section>
+
+
+            <hr class="linea" style="width:90%">
+            <!--COMIENZO TERCERA SECCION-->
+            <h2 class="title-products">PRODUCTOS</h2>
+            <section class="third_section">
+
+
+                <div class="card" v-for="data in cardDatos">
+                    <img class="product_img" :src=data.imagen alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ data.name }} </h5>
+                        <p class="card-price"> {{ data.price }}$ </p>
+                        <button class="btn btn-primary">Ver Mas</button>
+                    </div>
+                </div>
+
+                <!--FIN TERCERA SECCION-->
+            </section>
+            <hr class="linea" style="width:90%">
+
+            <!--COMIENZO CUARTA SECCION-->
+            <section class="fourth_section">
+
+                <div>
+                    <i class="fa fa-truck" aria-hidden="true"></i>
+                    <p>Entrega a domicilio sin cargo</p>
+                    <span class="more">Ingresa <a href="#">aqui</a> para mas informacion </span>
+                </div>
+
+                <div>
+                    <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+                    <p>Paga como quieras</p>
+                    <span>Tarjetas de crédito o efectivo</span>
+                </div>
+
+                <div>
+                    <i class="fa fa-lock" aria-hidden="true"></i>
+                    <p>Compra Protegida</p>
+                    <span>Tus datos siempre protegidos</span>
+                </div>
+
+                <!--FIN CUARTA SECCION-->
+
+            </section>
+
+        </main>
+
+        <footer-component></footer-component>
+
+    </div>
+
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="./javascript/components/header-nav-footer.js"></script>
+
+    <script>
+
+        const app = Vue.createApp({
+            data() {
+                return {
+                    cardDatos: [
+                        {
+                            name: "Buzo Rosa",
+                            price: 12500,
+                            imagen: "https://images.nightcafe.studio/jobs/87QHjWQoz7IB337Q1OKQ/87QHjWQoz7IB337Q1OKQ--3--uu7pm.jpg?tr=w-1600,c-at_max"
+                        },
+                        {
+                            name: "Remera Rosa",
+                            price: 15500,
+                            imagen: "imagenes/remera_rosa.webp"
+                        },
+                        {
+                            name: "Campera Roja",
+                            price: "12500",
+                            imagen: "imagenes/campera_roja.webp"
+                        },
+                        {
+                            name: "Bota",
+                            price: 22000,
+                            imagen: "imagenes/zapato_negro.webp"
+                        }
+                    ]
+                }
+            }
+        })
+
+        app.component('header-component', HeaderComponent)
+        app.component('nav-component', NavComponent)
+        app.component('footer-component', FooterComponent)
+
+        const mountedApp = app.mount('#app')
+
+    </script>
+
+
+    <!--ARCHIVO JAVASCRIPT PARA EL CONTROL DEL MENU LATERAL RESPONSIVO-->
+    <script src="./javascript/index.js"></script>
+
+</body>
+
+</html>
